@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import {Link} from "react-router-dom";
 
 export default class FormComponent extends React.Component {
     render() {
@@ -22,6 +23,7 @@ export default class FormComponent extends React.Component {
                 <Button variant="primary" type="submit">
                     Submit
                 </Button>
+                <p className="text-white">You already have an account ? <Link to="/login">Login here !</Link></p>
             </Form>
         )
     }
