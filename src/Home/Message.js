@@ -2,7 +2,7 @@ import React from 'react';
 import './Message.css';
 import logo from './images/logo.png';
 
-export default class Message extends React.Component {
+export class Message extends React.Component {
     render() {
         return (
             <div className="container-fluid main">
