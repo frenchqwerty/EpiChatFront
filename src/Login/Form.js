@@ -17,7 +17,6 @@ function FormComponent() {
             password: password
         }).then(result => {
             if (result.status === 201) {
-                console.log(result.data);
                 localStorage.setItem("tokens", JSON.stringify(result.data));
                 return <Redirect to="/"/>;
             } else
