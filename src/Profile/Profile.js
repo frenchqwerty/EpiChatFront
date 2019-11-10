@@ -1,6 +1,6 @@
-import React from 'react';
-import logo from './images/logo.png';
-import './Profile.css';
+import React from "react";
+import logo from "./images/logo.png";
+import "./Profile.css";
 
 export class Profile extends React.Component {
     render() {

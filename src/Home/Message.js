@@ -1,6 +1,6 @@
-import React from 'react';
-import './Message.css';
-import logo from './images/logo.png';
+import React from "react";
+import "./Message.css";
+import logo from "./images/logo.png";
 
 export class Message extends React.Component {
     render() {

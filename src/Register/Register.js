@@ -1,7 +1,7 @@
-import React from 'react';
-import './Register.css';
-import image from './images/flying-cat.gif'
-import logo from './images/logo.png'
+import React from "react";
+import "./Register.css";
+import image from "./images/flying-cat.gif"
+import logo from "./images/logo.png"
 import Image from "react-bootstrap/Image";
 import FormComponent from "./Form";
 
