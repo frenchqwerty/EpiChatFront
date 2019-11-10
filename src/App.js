@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.min";
 import {Login} from "./Login/Login";
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import {Register} from "./Register/Register";
@@ -20,7 +21,7 @@ function App() {
                 <PrivateRoute exact path="/" component={Message}/>
                 <Route path="/login" component={Login}/>
                 <Route path="/register" component={Register}/>
-                <Route path="/profile" component={Profile}/>
+                <PrivateRoute path="/profile" component={Profile}/>
             </Router>
         </AuthContext.Provider>
     );

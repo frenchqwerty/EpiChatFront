@@ -1,12 +1,63 @@
 import React from "react";
 import logo from "./images/logo.png";
 import "./Profile.css";
+import {Link, Redirect} from "react-router-dom";
+import axios from "axios";
 
 export class Profile extends React.Component {
+    editProfile(e) {
+        let body = this.state.profile;
+        delete body.email;
+        delete body.id;
+        axios.patch("http://localhost:4000/users/me", body,
+            {
+                headers: {
+                    Authorization: "Bearer " + JSON.parse(localStorage.getItem("tokens")).accessToken
+                }
+            }).then(res => {
+            if (res.status === 200)
+                this.email = res.data.email;
+        }).catch(e => {
+            localStorage.removeItem('tokens');
+            return <Redirect to="/"/>;
+        });
+    };
+
+    constructor() {
+        super();
+        this.state = {
+            profile: {
+                name: "",
+                profession: "",
+                age: "",
+                phone: "",
+                email: "",
+                id: 0
+            }
+        }
+    }
+
+    componentDidMount() {
+        axios.get("http://127.0.0.1:4000/users/me", {
+            headers: {
+                Authorization: "Bearer " + JSON.parse(localStorage.getItem("tokens")).accessToken
+            }
+        }).then(res => {
+            if (res.status === 200) {
+                this.setState({profile: res.data});
+            }
+        }).catch(e => {
+            localStorage.removeItem('tokens');
+            return <Redirect to="/"/>;
+        });
+    }
+
     render() {
+        const profile = this.state.profile;
         return (
             <div>
                 <img src={logo} alt="logo" className="mx-auto d-block"/>
+                <Link to='/'>Chat</Link>
                 <div className="container emp-profile">
                     <div className="row">
                         <div className="col-md-4">
@@ -23,10 +74,10 @@ export class Profile extends React.Component {
                         <div className="col-md-6">
                             <div className="profile-head">
                                 <h5>
-                                    Kshiti Ghelani
+                                    {profile && profile.name ? profile.name : "Name not already set"}
                                 </h5>
                                 <h6>
-                                    Web Developer and Designer
+                                    {profile && profile.profession ? profile.profession : "Profession not already set"}
                                 </h6>
                                 <ul className="nav nav-tabs" id="myTab" role="tablist">
                                     <li className="nav-item">
@@ -37,7 +88,98 @@ export class Profile extends React.Component {
                             </div>
                         </div>
                         <div className="col-md-2">
-                            <button type="submit" className="profile-edit-btn">Edit Profile</button>
+                            <button type="button" className="btn btn-primary" data-toggle="modal"
+                                    data-target="#exampleModal">
+                                Edit Profile
+                            </button>
+
+                            <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog"
+                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div className="modal-dialog" role="document">
+                                    <div className="modal-content">
+                                        <div className="modal-header">
+                                            <h5 className="modal-title" id="exampleModalLabel">Edit Profile</h5>
+                                            <button type="button" className="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form>
+                                            <div className="modal-body">
+                                                <div className="form-group">
+                                                    <label>Name</label>
+                                                    <input type="text" className="form-control"
+                                                           placeholder="Enter name" value={profile && profile.name}
+                                                           onChange={(e) => this.setState({
+                                                               profile: {
+                                                                   name: e.target.value,
+                                                                   profession: this.state.profile.profession,
+                                                                   age: this.state.profile.age,
+                                                                   phone: this.state.profile.phone,
+                                                                   id: this.state.profile.id,
+                                                                   email: this.state.profile.email
+                                                               }
+                                                           })}/>
+                                                </div>
+                                                <div className="form-group">
+                                                    <label>Profession</label>
+                                                    <input type="text" className="form-control"
+                                                           placeholder="Enter profession"
+                                                           value={profile && profile.profession}
+                                                           onChange={(e) => this.setState({
+                                                               profile: {
+                                                                   name: this.state.profile.name,
+                                                                   profession: e.target.value,
+                                                                   age: this.state.profile.age,
+                                                                   phone: this.state.profile.phone,
+                                                                   id: this.state.profile.id,
+                                                                   email: this.state.profile.email
+                                                               }
+                                                           })}/>
+                                                </div>
+                                                <div className="form-group">
+                                                    <label>Phone</label>
+                                                    <input type="text" className="form-control"
+                                                           placeholder="Enter phone" value={profile && profile.phone}
+                                                           onChange={(e) => this.setState({
+                                                               profile: {
+                                                                   name: this.state.profile.name,
+                                                                   profession: this.state.profile.profession,
+                                                                   age: this.state.profile.age,
+                                                                   phone: e.target.value,
+                                                                   id: this.state.profile.id,
+                                                                   email: this.state.profile.email
+                                                               }
+                                                           })}/>
+                                                </div>
+                                                <div className="form-group">
+                                                    <label>Age</label>
+                                                    <input type="text" className="form-control"
+                                                           placeholder="Enter phone" value={profile && profile.age}
+                                                           onChange={(e) => this.setState({
+                                                               profile: {
+                                                                   name: this.state.profile.name,
+                                                                   profession: this.state.profile.profession,
+                                                                   phone: this.state.profile.phone,
+                                                                   age: e.target.value,
+                                                                   id: this.state.profile.id,
+                                                                   email: this.state.profile.email
+                                                               }
+                                                           })}/>
+                                                </div>
+                                            </div>
+                                            <div className="modal-footer">
+                                                <button type="button" className="btn btn-secondary"
+                                                        data-dismiss="modal">Close
+                                                </button>
+                                                <button type="submit" onClick={this.editProfile.bind(this)}
+                                                        className="btn btn-primary">Save changes
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div className="row">
@@ -52,7 +194,7 @@ export class Profile extends React.Component {
                                             <label>User Id</label>
                                         </div>
                                         <div className="col-md-6">
-                                            <p>Kshiti123</p>
+                                            <p>{profile && profile.id}</p>
                                         </div>
                                     </div>
                                     <div className="row">
@@ -60,7 +202,7 @@ export class Profile extends React.Component {
                                             <label>Name</label>
                                         </div>
                                         <div className="col-md-6">
-                                            <p>Kshiti Ghelani</p>
+                                            <p>{profile && profile.name ? profile.name : "Name not already set"}</p>
                                         </div>
                                     </div>
                                     <div className="row">
@@ -68,7 +210,7 @@ export class Profile extends React.Component {
                                             <label>Email</label>
                                         </div>
                                         <div className="col-md-6">
-                                            <p>kshitighelani@gmail.com</p>
+                                            <p>{profile && profile.email}</p>
                                         </div>
                                     </div>
                                     <div className="row">
@@ -76,7 +218,7 @@ export class Profile extends React.Component {
                                             <label>Phone</label>
                                         </div>
                                         <div className="col-md-6">
-                                            <p>123 456 7890</p>
+                                            <p>{profile && profile.phone ? profile.phone : "Phone not already set"}</p>
                                         </div>
                                     </div>
                                     <div className="row">
@@ -84,56 +226,15 @@ export class Profile extends React.Component {
                                             <label>Profession</label>
                                         </div>
                                         <div className="col-md-6">
-                                            <p>Web Developer and Designer</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="tab-pane fade" id="profile" role="tabpanel"
-                                     aria-labelledby="profile-tab">
-                                    <div className="row">
-                                        <div className="col-md-6">
-                                            <label>Experience</label>
-                                        </div>
-                                        <div className="col-md-6">
-                                            <p>Expert</p>
+                                            <p>{profile && profile.profession ? profile.profession : "Profession not already set"}</p>
                                         </div>
                                     </div>
                                     <div className="row">
                                         <div className="col-md-6">
-                                            <label>Hourly Rate</label>
+                                            <label>Age</label>
                                         </div>
                                         <div className="col-md-6">
-                                            <p>10$/hr</p>
-                                        </div>
-                                    </div>
-                                    <div className="row">
-                                        <div className="col-md-6">
-                                            <label>Total Projects</label>
-                                        </div>
-                                        <div className="col-md-6">
-                                            <p>230</p>
-                                        </div>
-                                    </div>
-                                    <div className="row">
-                                        <div className="col-md-6">
-                                            <label>English Level</label>
-                                        </div>
-                                        <div className="col-md-6">
-                                            <p>Expert</p>
-                                        </div>
-                                    </div>
-                                    <div className="row">
-                                        <div className="col-md-6">
-                                            <label>Availability</label>
-                                        </div>
-                                        <div className="col-md-6">
-                                            <p>6 months</p>
-                                        </div>
-                                    </div>
-                                    <div className="row">
-                                        <div className="col-md-12">
-                                            <label>Your Bio</label><br/>
-                                            <p>Your detail description</p>
+                                            <p>{profile && profile.age ? profile.age : "Age not already set"}</p>
                                         </div>
                                     </div>
                                 </div>

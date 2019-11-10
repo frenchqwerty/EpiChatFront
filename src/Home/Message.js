@@ -3,7 +3,7 @@ import "./Message.css";
 import logo from "./images/logo.png";
 import socketIOClient from "socket.io-client";
 import axios from 'axios';
-import {Redirect} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 
 export class Message extends React.Component {
     constructor() {
@@ -28,6 +28,9 @@ export class Message extends React.Component {
         }).then(res => {
             if (res.status === 200)
                 this.email = res.data.email;
+        }).catch(e => {
+            localStorage.removeItem('tokens');
+            return <Redirect to="/"/>;
         });
         axios.get("http://127.0.0.1:4000/chat", {
             headers: {
@@ -55,6 +58,7 @@ export class Message extends React.Component {
         return (
             <div className="container-fluid main">
                 <img src={logo} className="d-block mx-auto" alt="logo"/>
+                <Link to='/profile'>My profile</Link>
                 <div className="messaging">
                     <div className="inbox_msg">
                         <div className="mesgs">
