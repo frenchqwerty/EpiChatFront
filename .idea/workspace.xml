@@ -3,8 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="909f4ac0-3e55-4e3a-aed6-48dfef042eb8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Home/Message.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Home/Message.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Home/Message.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Home/Message.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Login/Form.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login/Form.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Register/Form.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Register/Form.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -113,7 +116,7 @@
       <workItem from="1573206523162" duration="188000" />
       <workItem from="1573307894868" duration="188000" />
       <workItem from="1573308259949" duration="1053000" />
-      <workItem from="1573377259784" duration="18297000" />
+      <workItem from="1573377259784" duration="24977000" />
     </task>
     <task id="LOCAL-00001" summary="Init commit">
       <created>1568899673988</created>
@@ -171,7 +174,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573405221769</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Login and Register works">
+      <created>1573406994487</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1573406994487</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -200,6 +210,7 @@
     <MESSAGE value="Debut profile page + fix travis" />
     <MESSAGE value="Page message et début page profil" />
     <MESSAGE value="Login page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Login page" />
+    <MESSAGE value="Login and Register works" />
+    <option name="LAST_COMMIT_MESSAGE" value="Login and Register works" />
   </component>
 </project>

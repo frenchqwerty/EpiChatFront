@@ -19,9 +19,11 @@ function FormComponent() {
             if (result.status === 201) {
                 localStorage.setItem("tokens", JSON.stringify(result.data));
                 return <Redirect to="/"/>;
-            } else
-                localStorage.removeItem('tokens');
-        });
+            }
+        }).catch(e => {
+            localStorage.removeItem('tokens');
+            return <Redirect to="/"/>;
+        })
     }
 
     return (
