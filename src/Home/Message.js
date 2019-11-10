@@ -9,17 +9,25 @@ export class Message extends React.Component {
     constructor() {
         super();
         this.state = {
-            response: false,
-            endpoint: "http://127.0.0.1:8888",
-            initChat: {}
+            initChat: []
         };
     }
 
+    message = '';
+    socket = socketIOClient("http://127.0.0.1:8888/", {reconnection: false});
+    email = '';
+
     componentDidMount() {
-        const {endpoint} = this.state;
-        const socket = socketIOClient(endpoint);
-        socket.on("chat", data => {
+        this.socket.on("chat", data => {
             this.setState({initChat: this.state.initChat.concat([JSON.parse(data)])})
+        });
+        axios.get("http://127.0.0.1:4000/users/me", {
+            headers: {
+                Authorization: "Bearer " + JSON.parse(localStorage.getItem("tokens")).accessToken
+            }
+        }).then(res => {
+            if (res.status === 200)
+                this.email = res.data.email;
         });
         axios.get("http://127.0.0.1:4000/chat", {
             headers: {
@@ -34,6 +42,14 @@ export class Message extends React.Component {
         })
     }
 
+    sendMessage(e) {
+        e.preventDefault();
+        this.socket.emit('chat', JSON.stringify({
+            email: this.email,
+            message: this.message
+        }));
+    };
+
     render() {
         const initChat = Array.from(this.state.initChat);
         return (
@@ -45,15 +61,11 @@ export class Message extends React.Component {
                             <div className="msg_history">
                                 {initChat && initChat.map((item, i) => {
                                     return (
-                                        <div className="incoming_msg" key={i}>
-                                            <div className="incoming_msg_img">
-                                                <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"/>
-                                            </div>
-                                            <div className="received_msg">
-                                                <div className="received_withd_msg">
-                                                    <p>{item.message}
-                                                    </p>
-                                                </div>
+                                        <div className="outgoing_msg"
+                                             key={i}>
+                                            <div className={this.email !== item.email ? "received_withd_msg" : "sent_msg"}>
+                                                <p>{item.message}
+                                                </p>
                                             </div>
                                         </div>
 
@@ -68,10 +80,16 @@ export class Message extends React.Component {
                             </div>
                             <div className="type_msg">
                                 <div className="input_msg_write">
-                                    <input type="text" className="write_msg" placeholder="Type a message"/>
-                                    <button className="msg_send_btn" type="button">
-                                        <i className="fa fa-paper-plane-o" aria-hidden="true"></i>
-                                    </button>
+                                    <form>
+                                        <input type="text" className="write_msg" placeholder="Type a message"
+                                               onChange={e => {
+                                                   this.message = e.target.value
+                                               }}/>
+                                        <button className="msg_send_btn" type="submit"
+                                                onClick={this.sendMessage.bind(this)}>
+                                            <i className="fa fa-paper-plane-o" aria-hidden="true"></i>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

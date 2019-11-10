@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="909f4ac0-3e55-4e3a-aed6-48dfef042eb8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Home/Message.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Home/Message.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Home/Message.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Home/Message.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Login/Form.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login/Form.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,17 +49,17 @@
     <property name="ts.external.directory.path" value="C:\Users\Yassir\AppData\Local\JetBrains\Toolbox\apps\PhpStorm\ch-0\192.7142.41\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Yassir\Documents\Epitech\EpiChatFront\src\Register\images" />
+      <recent name="C:\Users\Yassir\Documents\Epitech\EpiChatFront\src\Login\images" />
+      <recent name="C:\Users\Yassir\Documents\Epitech\EpiChatFront\public" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Yassir\Documents\Epitech\EpiChatFront\src\Profile\images" />
       <recent name="C:\Users\Yassir\Documents\Epitech\EpiChatFront\src\Login\images" />
       <recent name="C:\Users\Yassir\Documents\Epitech\EpiChatFront\src\Home\images" />
       <recent name="C:\Users\Yassir\Documents\Epitech\EpiChatFront\src\Register" />
       <recent name="C:\Users\Yassir\Documents\Epitech\EpiChatFront\src\Register\images" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Yassir\Documents\Epitech\EpiChatFront\src\Register\images" />
-      <recent name="C:\Users\Yassir\Documents\Epitech\EpiChatFront\src\Login\images" />
-      <recent name="C:\Users\Yassir\Documents\Epitech\EpiChatFront\public" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -116,7 +112,7 @@
       <workItem from="1573206523162" duration="188000" />
       <workItem from="1573307894868" duration="188000" />
       <workItem from="1573308259949" duration="1053000" />
-      <workItem from="1573377259784" duration="24977000" />
+      <workItem from="1573377259784" duration="27921000" />
     </task>
     <task id="LOCAL-00001" summary="Init commit">
       <created>1568899673988</created>
@@ -181,7 +177,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573406994487</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Chat incomming msg works">
+      <created>1573413947167</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1573413947167</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -211,6 +214,7 @@
     <MESSAGE value="Page message et début page profil" />
     <MESSAGE value="Login page" />
     <MESSAGE value="Login and Register works" />
-    <option name="LAST_COMMIT_MESSAGE" value="Login and Register works" />
+    <MESSAGE value="Chat incomming msg works" />
+    <option name="LAST_COMMIT_MESSAGE" value="Chat incomming msg works" />
   </component>
 </project>
